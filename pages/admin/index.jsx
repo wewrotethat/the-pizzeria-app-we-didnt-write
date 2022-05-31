@@ -66,7 +66,7 @@ const Index = ({ orders, products }) => {
               </tr>
             </tbody>
             {pizzaList.map((product) => (
-              <tbody key={product._id}>
+              <tbody key={product._id} data-cy='products-table'>
                 <tr className={styles.trTitle}>
                   <td>
                     <Image
@@ -81,10 +81,11 @@ const Index = ({ orders, products }) => {
                   <td>{product.title}</td>
                   <td>${product.prices[0]}</td>
                   <td>
-                    <button className={styles.button} onClick={() => handleEdit(product)}> Edit</button>
+                    <button className={`${styles.button} edit-button`} onClick={() => handleEdit(product)}> Edit</button>
                     <button
-                      className={styles.button}
+                      className={`${styles.button} delete-button`}
                       onClick={() => handleDelete(product._id)}
+
                     >
                       Delete
                     </button>

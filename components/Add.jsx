@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 
 const Add = ({ setClose, existingProduct }) => {
 
-  const [file, setFile] = useState(existingProduct.img);
-  const [title, setTitle] = useState(existingProduct.title);
-  const [desc, setDesc] = useState(existingProduct.desc);
-  const [prices, setPrices] = useState(existingProduct.prices ?? []);
-  const [extraOptions, setExtraOptions] = useState(existingProduct.extraOptions ?? []);
+  const [file, setFile] = useState(existingProduct?.img);
+  const [title, setTitle] = useState(existingProduct?.title);
+  const [desc, setDesc] = useState(existingProduct?.desc);
+  const [prices, setPrices] = useState(existingProduct?.prices ?? []);
+  const [extraOptions, setExtraOptions] = useState(existingProduct?.extraOptions ?? []);
   const [extra, setExtra] = useState(null);
 
   const changePrice = (e, index) => {
@@ -84,7 +84,7 @@ const Add = ({ setClose, existingProduct }) => {
           !existingProduct ?
             <div className={styles.item}>
               <label className={styles.label}>Choose an image</label>
-              <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+              <input type="file" onChange={(e) => setFile(e.target.files[0])} data-cy="file-input" />
             </div> : null
         }
         <div className={styles.item}>
@@ -94,6 +94,7 @@ const Add = ({ setClose, existingProduct }) => {
             type="text"
             onChange={(e) => setTitle(e.target.value)}
             defaultValue={title}
+            data-cy="title-field"
           />
         </div>
         <div className={styles.item}>
@@ -103,6 +104,7 @@ const Add = ({ setClose, existingProduct }) => {
             type="text"
             onChange={(e) => setDesc(e.target.value)}
             defaultValue={desc}
+            data-cy="desc-field"
           />
         </div>
         <div className={styles.item}>
@@ -114,6 +116,7 @@ const Add = ({ setClose, existingProduct }) => {
               placeholder="Small"
               onChange={(e) => changePrice(e, 0)}
               defaultValue={prices[0]}
+              data-cy="small-pizza-price-field"
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
@@ -121,6 +124,8 @@ const Add = ({ setClose, existingProduct }) => {
               placeholder="Medium"
               onChange={(e) => changePrice(e, 1)}
               defaultValue={prices[1]}
+              data-cy="medium-pizza-price-field"
+
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
@@ -128,6 +133,8 @@ const Add = ({ setClose, existingProduct }) => {
               placeholder="Large"
               onChange={(e) => changePrice(e, 2)}
               defaultValue={prices[2]}
+              data-cy="large-pizza-price-field"
+
             />
           </div>
         </div>
@@ -160,7 +167,10 @@ const Add = ({ setClose, existingProduct }) => {
             ))}
           </div>
         </div>
-        <button className={styles.addButton} onClick={handleCreate}>
+        <button
+          className={styles.addButton}
+          onClick={handleCreate}
+          data-cy='submit-product-detail-button'>
           {existingProduct ? 'Update' : 'Create'}
         </button>
       </div>

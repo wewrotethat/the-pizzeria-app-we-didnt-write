@@ -28,18 +28,24 @@ const Login = () => {
         <input
           placeholder="username"
           className={styles.input}
+          data-cy="username"
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
           placeholder="password"
           type="password"
           className={styles.input}
+          data-cy="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleClick} className={styles.button}>
+        <button
+          onClick={handleClick}
+          className={styles.button}
+          data-cy="sign-in-button"
+        >
           Sign In
         </button>
-        {error && <span className={styles.error}>Wrong Credentials!</span>}
+        {error && <span className={styles.error} data-cy="sign-in-error">Wrong Credentials!</span>}
       </div>
     </div>
   );

@@ -12,7 +12,20 @@ const Index = ({ orders, products }) => {
   const status = ["preparing", "on the way", "delivered"];
   const [close, setClose] = useState(true);
 
+
   const handleDelete = async (id) => {
+    console.log(id);
+    try {
+      const res = await axios.delete(
+        "http://localhost:3000/api/products/" + id
+      );
+      setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleEdit = async (id) => {
     console.log(id);
     try {
       const res = await axios.delete(
@@ -73,7 +86,7 @@ const Index = ({ orders, products }) => {
                   <td>{product.title}</td>
                   <td>${product.prices[0]}</td>
                   <td>
-                    <button className={styles.button}>Edit</button>
+                    <button className={styles.button} onClick={() => handleEdit(product._id)}> Edit</button>
                     <button
                       className={styles.button}
                       onClick={() => handleDelete(product._id)}
@@ -122,7 +135,7 @@ const Index = ({ orders, products }) => {
       </div>
       {<AddButton setClose={setClose} />}
       {!close && <Add setClose={setClose} />}
-    </div>
+    </div >
 
   );
 };

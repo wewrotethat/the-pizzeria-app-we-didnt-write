@@ -18,12 +18,21 @@ export default async function handler(req, res) {
   }
 
   if (method === "POST") {
-    if(!token || token !== process.env.token){
+    if (!token || token !== process.env.token) {
       return res.status(401).json("Not authenticated!")
     }
     try {
-      
+
       const user = await User.create(req.body);
+      res.status(201).json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+  if (method === "DELETE") {
+    try {
+
+      const user = await User.deleteMany();
       res.status(201).json(user);
     } catch (err) {
       res.status(500).json(err);

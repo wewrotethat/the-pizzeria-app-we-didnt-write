@@ -17,6 +17,14 @@ describe(
 
         })
 
+        it(`Given empty username and password,
+        When a user tries to log in with them,
+        Then they should be shown an error message`, () => {
+            cy.get('[data-cy=sign-in-button]').click()
+            cy.get('[data-cy=sign-in-error]').should('contain', 'Wrong Credentials!')
+
+        })
+
         it(`Given a correct username and a wrong password,
         When a user tries to log in with them,
         Then they should be shown an error message`, () => {

@@ -146,9 +146,13 @@ const AddUser = ({ setClose }) => {
                 </div>
                 {
                     error ?
-                        <p>{error}</p> : null
+                        <p data-cy='sign-up-error'>{error}</p> : null
                 }
-                <button className={styles.addButton} onClick={handleCreate}>
+                <button
+                    className={styles.addButton}
+                    onClick={handleCreate}
+                    data-cy="sign-up-button"
+                >
                     Create
                 </button>
             </div>

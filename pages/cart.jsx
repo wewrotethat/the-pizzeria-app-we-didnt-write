@@ -164,6 +164,7 @@ const Cart = () => {
               <button
                 className={styles.payButton}
                 onClick={() => setCash(true)}
+                data-cy="cash-on-delivery-button"
               >
                 CASH ON DELIVERY
               </button>
@@ -180,7 +181,7 @@ const Cart = () => {
               </PayPalScriptProvider>
             </div>
           ) : (
-            <button onClick={() => setOpen(true)} className={styles.button}>
+            <button onClick={() => setOpen(true)} className={styles.button} data-cy="checkout-button">
               CHECKOUT NOW!
             </button>
           )}

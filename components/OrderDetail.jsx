@@ -4,9 +4,17 @@ import styles from "../styles/OrderDetail.module.css";
 const OrderDetail = ({ total, createOrder }) => {
   const [customer, setCustomer] = useState("");
   const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [error, setError] = useState(false);
 
   const handleClick = () => {
+    if (!phone || !address) {
+      setError(true);
+      return;
+    }
+
     createOrder({ customer, address, total, method: 0 });
+
   };
 
   return (
@@ -20,6 +28,7 @@ const OrderDetail = ({ total, createOrder }) => {
             type="text"
             className={styles.input}
             onChange={(e) => setCustomer(e.target.value)}
+            data-cy='order-detail-name'
           />
         </div>
         <div className={styles.item}>
@@ -28,6 +37,9 @@ const OrderDetail = ({ total, createOrder }) => {
             type="text"
             placeholder="+1 234 567 89"
             className={styles.input}
+            data-cy='order-detail-phone'
+            onChange={(e) => setPhone(e.target.value)}
+
           />
         </div>
         <div className={styles.item}>
@@ -38,9 +50,16 @@ const OrderDetail = ({ total, createOrder }) => {
             type="text"
             className={styles.textarea}
             onChange={(e) => setAddress(e.target.value)}
+            data-cy='order-detail-address'
           />
         </div>
-        <button className={styles.button} onClick={handleClick}>
+        {
+          error ? <div className={styles.error} data-cy="order-error-text">{"Please enter a valid phone number and address"}</div> : null
+        }
+        <button className={styles.button} onClick={handleClick}
+          data-cy='order-detail-submit'
+
+        >
           Order
         </button>
       </div>

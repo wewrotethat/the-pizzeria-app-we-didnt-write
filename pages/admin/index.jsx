@@ -112,7 +112,7 @@ const Index = ({ orders, products }) => {
               <tbody key={order._id}>
                 <tr className={styles.trTitle}>
                   <td>{order._id.slice(0, 5)}...</td>
-                  <td>{order.customer}</td>
+                  <td data-cy={order.customer + "'s-order"}>{order.customer}</td>
                   <td>${order.total}</td>
                   <td>
                     {order.method === 0 ? <span>cash</span> : <span>paid</span>}
@@ -130,7 +130,7 @@ const Index = ({ orders, products }) => {
         </div>
       </div>
       {<AddButton setClose={setClose} />}
-      {!close && <Add setClose={setClose} existingProduct={product}/>}
+      {!close && <Add setClose={setClose} existingProduct={product} />}
     </div >
 
   );

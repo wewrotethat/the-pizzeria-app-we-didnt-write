@@ -33,7 +33,7 @@ const Navbar = () => {
         <div className={styles.item}>
           <div className={styles.cart}>
             <Image src="/img/cart.png" alt="" width="30px" height="30px" />
-            <div className={styles.counter}>{quantity}</div>
+            <div className={styles.counter} data-cy="cart-counter">{quantity}</div>
           </div>
         </div>
       </Link>

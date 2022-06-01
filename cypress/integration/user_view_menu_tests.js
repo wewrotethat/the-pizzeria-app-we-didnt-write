@@ -1,6 +1,7 @@
-import { createTestPizza } from "../support/utils"
+import { createTestPizza, deleteTestPizza } from "../support/utils"
 
 beforeEach(() => {
+    deleteTestPizza();
     createTestPizza();
     cy.clearCookies()
     // cy.intercept('/api/products', (req) => {

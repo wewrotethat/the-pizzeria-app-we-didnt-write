@@ -22,6 +22,11 @@ export const createTestPizza = () => {
             desc: 'Cypress Test Pizza',
             prices: [10, 100, 1000],
             img: 'https://res.cloudinary.com/yabsra/image/upload/v1654013952/cld-sample-4.jpg',
+            extraOptions: [
+                {
+                    text: 'Extra Cheese',
+                    price: 1
+                },]
         },
     })
 }

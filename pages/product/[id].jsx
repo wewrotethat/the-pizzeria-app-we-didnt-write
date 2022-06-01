@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
 
 const Product = ({ pizza }) => {
-  const [price, setPrice] = useState(pizza.prices[0]);
+  const [price, setPrice] = useState(pizza.prices[0] ?? 0);
   const [size, setSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [extras, setExtras] = useState([]);
@@ -35,7 +35,7 @@ const Product = ({ pizza }) => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({...pizza, extras, price, quantity}));
+    dispatch(addProduct({ ...pizza, extras, price, quantity }));
   };
 
   return (
@@ -51,15 +51,15 @@ const Product = ({ pizza }) => {
         <p className={styles.desc}>{pizza.desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
-          <div className={styles.size} onClick={() => handleSize(0)}>
+          <div className={styles.size} onClick={() => handleSize(0)} data-cy="small-size-selector">
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Small</span>
           </div>
-          <div className={styles.size} onClick={() => handleSize(1)}>
+          <div className={styles.size} onClick={() => handleSize(1)} data-cy="medium-size-selector">
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Medium</span>
           </div>
-          <div className={styles.size} onClick={() => handleSize(2)}>
+          <div className={styles.size} onClick={() => handleSize(2)} data-cy="large-size-selector">
             <Image src="/img/size.png" layout="fill" alt="" />
             <span className={styles.number}>Large</span>
           </div>
@@ -74,6 +74,7 @@ const Product = ({ pizza }) => {
                 name={option.text}
                 className={styles.checkbox}
                 onChange={(e) => handleChange(e, option)}
+                data-cy={option.text + "-extra-option-checkbox"}
               />
               <label htmlFor="double">{option.text}</label>
             </div>
@@ -85,8 +86,9 @@ const Product = ({ pizza }) => {
             type="number"
             defaultValue={1}
             className={styles.quantity}
+            data-cy="quantity-input"
           />
-          <button className={styles.button} onClick={handleClick}>
+          <button className={styles.button} onClick={handleClick} data-cy="add-to-cart-button">
             Add to Cart
           </button>
         </div>

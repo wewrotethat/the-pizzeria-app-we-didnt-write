@@ -9,9 +9,7 @@ describe(
         beforeEach(() => {
             cy.clearCookies()
             resetUsersDatabase()
-            cy.visit('localhost:3000/admin/login')
-            cy.get('[data-cy="username"]').type('admin')
-            cy.get('[data-cy="password"]').type('123456')
+            cy.login('admin', '123456')
             cy.get('[data-cy="sign-in-button"]').click()
             cy.visit('localhost:3000/admin/users')
             cy.get('[data-cy="add-user-button"]').click()

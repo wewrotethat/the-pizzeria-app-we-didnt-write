@@ -35,6 +35,7 @@ export const createTestPizza = () => {
         },
     })
 }
+
 export const createTestPizza2 = () => {
     cy.request({
         method: 'POST',
@@ -50,5 +51,13 @@ export const createTestPizza2 = () => {
                     price: 1
                 },]
         },
+    })
+}
+
+
+export const deleteTestOrders = () => {
+    cy.request({
+        method: 'DELETE',
+        url: 'http://localhost:3000/api/orders',
     })
 }

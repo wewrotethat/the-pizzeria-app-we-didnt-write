@@ -22,6 +22,15 @@ const handler = async (req, res) => {
       res.status(500).json(err);
     }
   }
+
+  if (method === "DELETE") {
+    try {
+      const order = await Order.deleteMany();
+      res.status(201).json(order);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
 };
 
 export default handler;

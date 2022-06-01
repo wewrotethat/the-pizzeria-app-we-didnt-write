@@ -119,7 +119,7 @@ const Index = ({ orders, products }) => {
                   </td>
                   <td>{status[order.status]}</td>
                   <td>
-                    <button onClick={() => handleStatus(order._id)}>
+                    <button onClick={() => handleStatus(order._id)} data-cy={order.customer + "-next-stage"}>
                       Next Stage
                     </button>
                   </td>

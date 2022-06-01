@@ -11,6 +11,7 @@ const Add = ({ setClose, existingProduct }) => {
   const [prices, setPrices] = useState(existingProduct?.prices ?? []);
   const [extraOptions, setExtraOptions] = useState(existingProduct?.extraOptions ?? []);
   const [extra, setExtra] = useState(null);
+  const [error, setError] = useState(false);
 
   const changePrice = (e, index) => {
     const currentPrices = prices;
@@ -26,7 +27,14 @@ const Add = ({ setClose, existingProduct }) => {
     setExtraOptions((prev) => [...prev, extra]);
   };
 
+  const checkIfFormIsEmpty = () => {
+
+    return !file || !title || !desc || !prices;
+
+  }
+
   const handleCreate = async () => {
+    setError(checkIfFormIsEmpty());
     console.log('add called')
     const data = new FormData();
     data.append("file", file);
@@ -167,6 +175,9 @@ const Add = ({ setClose, existingProduct }) => {
             ))}
           </div>
         </div>
+        {
+          error ? <p className={styles.error} data-cy="product-error-field">Please fill all fields</p> : null
+        }
         <button
           className={styles.addButton}
           onClick={handleCreate}

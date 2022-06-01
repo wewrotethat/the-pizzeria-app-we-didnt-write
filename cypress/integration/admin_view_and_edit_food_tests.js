@@ -53,7 +53,7 @@ describe(
             cy.contains('$123.45').should('exist')
         })
 
-        it(`Given a logged in admin and products existing on the system,
+        it(`Given a logged in admin,
         When an admin creates a product and tries to delete it,
         Then the product should not be shown on the products list`, { defaultCommandTimeout: 15000 }, () => {
 
@@ -72,6 +72,16 @@ describe(
 
             cy.get('.delete-button').last().click()
             cy.contains('Cypress-Test-Pizza').should('not.exist')
+
+        })
+
+        it(`Given a logged in admin,
+        When an admin tries to create a product and with empty fields,
+        Then an error message should be shown`, { defaultCommandTimeout: 15000 }, () => {
+
+            cy.get('[data-cy="add-product-button"]').click()
+            cy.get('[data-cy="submit-product-detail-button"]').click()
+            cy.get('[data-cy="product-error-field"]').should('exist')
 
         })
     })

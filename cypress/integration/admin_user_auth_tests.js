@@ -1,11 +1,13 @@
-beforeEach(() => {
-    cy.clearCookies()
-    cy.visit('localhost:3000/admin')
-})
+
 
 describe(
     `Admin User Authentication Tests`,
     () => {
+        beforeEach(() => {
+            cy.clearCookies()
+            cy.visit('localhost:3000/admin')
+        })
+
         it(`Given wrong username and password,
         When a user tries to log in with them,
         Then they should be shown an error message`, () => {

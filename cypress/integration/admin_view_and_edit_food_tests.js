@@ -1,18 +1,20 @@
 import { deleteTestPizzas } from "../support/utils"
 import 'cypress-file-upload';
 
-beforeEach(() => {
-    cy.clearCookies()
-    deleteTestPizzas()
-    cy.visit('localhost:3000/admin/login')
-    cy.get('[data-cy=username]').type('admin')
-    cy.get('[data-cy=password]').type('123456')
-    cy.get('[data-cy=sign-in-button]').click()
-})
 
 describe(
     `Admin and Product Tests`,
     () => {
+
+        beforeEach(() => {
+            cy.clearCookies()
+            deleteTestPizzas()
+            cy.visit('localhost:3000/admin/login')
+            cy.get('[data-cy=username]').type('admin')
+            cy.get('[data-cy=password]').type('123456')
+            cy.get('[data-cy=sign-in-button]').click()
+        })
+
         it(`Given a logged in admin and products existing on the system,
         When an admin vists /admin route,
         Then they should be able to see the products`, () => {

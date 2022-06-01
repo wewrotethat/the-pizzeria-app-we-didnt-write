@@ -1,17 +1,18 @@
 
 import { createTestPizza, deleteTestPizzas, deleteTestOrders } from "../support/utils"
 
-beforeEach(() => {
-    deleteTestPizzas();
-    createTestPizza();
-    deleteTestOrders();
-    cy.clearCookies();
-    cy.visit('localhost:3000');
-})
 
 describe(
     `Admin Order Tests`,
     () => {
+
+        beforeEach(() => {
+            deleteTestPizzas();
+            createTestPizza();
+            deleteTestOrders();
+            cy.clearCookies();
+            cy.visit('localhost:3000');
+        })
         it(
             `Given an order by a user,
                 When the admin logs in,

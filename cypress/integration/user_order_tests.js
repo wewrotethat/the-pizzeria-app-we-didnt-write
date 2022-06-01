@@ -1,15 +1,16 @@
 import { createTestPizza, createTestPizza2, deleteTestPizzas } from "../support/utils"
 
-beforeEach(() => {
-    deleteTestPizzas();
-    createTestPizza();
-    cy.clearCookies();
-    cy.visit('localhost:3000');
-})
 
 describe(
     `User Order Tests`,
     () => {
+
+        beforeEach(() => {
+            deleteTestPizzas();
+            createTestPizza();
+            cy.clearCookies();
+            cy.visit('localhost:3000');
+        })
         it(
             `Given a user on the home page,
             When the user clicks on an item in the menu,

@@ -1,22 +1,23 @@
 import { createTestPizza, deleteTestPizzas } from "../support/utils"
 
-beforeEach(() => {
-    deleteTestPizzas();
-    createTestPizza();
-    cy.clearCookies()
-    // cy.intercept('/api/products', (req) => {
-    //     req.reply({
-    //         statusCode: 200, // default
-    //         fixture: 'dummy_menu_of_1.json'
-    //     })
-    // })
-    cy.visit('localhost:3000')
-
-})
-
 describe(
     `User Menu Tests`,
     () => {
+
+        beforeEach(() => {
+            deleteTestPizzas();
+            createTestPizza();
+            cy.clearCookies()
+            // cy.intercept('/api/products', (req) => {
+            //     req.reply({
+            //         statusCode: 200, // default
+            //         fixture: 'dummy_menu_of_1.json'
+            //     })
+            // })
+            cy.visit('localhost:3000')
+
+        })
+
         it(`Given a user on the homepage
         When the user scrolls down
         Then they should see the menu of pizzas with the right prices`,

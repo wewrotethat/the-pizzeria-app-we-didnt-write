@@ -1,20 +1,21 @@
 import { resetUsersDatabase } from '../support/utils'
 
-beforeEach(() => {
-    cy.clearCookies()
-    resetUsersDatabase()
-    cy.visit('localhost:3000/admin/login')
-    cy.get('[data-cy=username]').type('admin')
-    cy.get('[data-cy=password]').type('123456')
-    cy.get('[data-cy=sign-in-button]').click()
-    cy.visit('localhost:3000/admin/users')
-    cy.get('[data-cy=add-user-button]').click()
-})
 
 
 describe(
     `Admin Create User Tests`,
     () => {
+
+        beforeEach(() => {
+            cy.clearCookies()
+            resetUsersDatabase()
+            cy.visit('localhost:3000/admin/login')
+            cy.get('[data-cy=username]').type('admin')
+            cy.get('[data-cy=password]').type('123456')
+            cy.get('[data-cy=sign-in-button]').click()
+            cy.visit('localhost:3000/admin/users')
+            cy.get('[data-cy=add-user-button]').click()
+        })
         it(`Given a logged in admin and valid name, email, username and password,
         When an admin tries to create a new user with them,
         Then the user should be shown on the user list`, () => {

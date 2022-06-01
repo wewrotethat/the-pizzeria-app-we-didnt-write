@@ -1,9 +1,9 @@
-import { deleteTestPizza } from "../support/utils"
+import { deleteTestPizzas } from "../support/utils"
 import 'cypress-file-upload';
 
 beforeEach(() => {
     cy.clearCookies()
-    deleteTestPizza()
+    deleteTestPizzas()
     cy.visit('localhost:3000/admin/login')
     cy.get('[data-cy=username]').type('admin')
     cy.get('[data-cy=password]').type('123456')

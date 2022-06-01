@@ -1,7 +1,7 @@
-import { createTestPizza, deleteTestPizza } from "../support/utils"
+import { createTestPizza, createTestPizza2, deleteTestPizzas } from "../support/utils"
 
 beforeEach(() => {
-    deleteTestPizza();
+    deleteTestPizzas();
     createTestPizza();
     cy.clearCookies();
     cy.visit('localhost:3000');
@@ -80,11 +80,51 @@ describe(
                 cy.url().should('include', '/cart')
                 cy.get('[data-cy="cart-image-Cypress-Test-Pizza"]').should('have.attr', 'src', 'https://res.cloudinary.com/yabsra/image/upload/v1654013952/cld-sample-4.jpg').should('exist')
 
-
-
             })
 
 
+        it(
+            `Given a user on the detail page,
+                When the user clicks on the add to cart button with the size,
+                Then the size should be added to the cart which is reflected by the price`,
+            () => {
+                cy.get('[data-cy="image-Cypress-Test-Pizza"]').click()
+                cy.get('[data-cy="large-size-selector"]').click()
+                cy.get('[data-cy="quantity-input"]').clear().type(1)
+                cy.get('[data-cy="add-to-cart-button"]').click()
+                cy.get('[data-cy="cart-counter"]').click()
+                cy.contains('$1000').should('exist')
+            })
+
+        it(
+            `Given a user on the detail page,
+                When the user clicks on the add to cart button with the desired extras,
+                Then the extras should be added to the cart which is shown in the cart`,
+            () => {
+                cy.get('[data-cy="image-Cypress-Test-Pizza"]').click()
+                cy.get('[data-cy="large-size-selector"]').click()
+                cy.get('[data-cy="Extra Cheese-extra-option-checkbox"]').click()
+                cy.get('[data-cy="quantity-input"]').clear().type(69)
+                cy.get('[data-cy="add-to-cart-button"]').click()
+                cy.contains('Extra Cheese').should('exist')
+            })
+
+        it(
+            `Given a user on the detail page,
+                When the user adds multiple items to the cart,
+                Then all of them should be shown`,
+            () => {
+
+                createTestPizza2();
+                cy.get('[data-cy="image-Cypress-Test-Pizza"]').click()
+                cy.get('[data-cy="add-to-cart-button"]').click()
+                cy.go('back')
+                cy.get('[data-cy="image-Cypress-Test-Pizza-2"]').click()
+                cy.get('[data-cy="add-to-cart-button"]').click()
+                cy.get('[data-cy="cart-counter"]').click()
+                cy.contains('Cypress-Test-Pizza').should('exist')
+                cy.contains('Cypress-Test-Pizza-2').should('exist')
+            })
 
 
     }

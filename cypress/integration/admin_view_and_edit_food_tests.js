@@ -1,4 +1,4 @@
-import { createTestPizza, deleteTestPizza } from "../support/utils"
+import { deleteTestPizza } from "../support/utils"
 import 'cypress-file-upload';
 
 beforeEach(() => {

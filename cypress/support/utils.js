@@ -1,6 +1,5 @@
-/**
- * Clears the database
- */
+import 'cypress-file-upload';
+
 export const resetUsersDatabase = () => {
     cy.request({
         method: 'DELETE',

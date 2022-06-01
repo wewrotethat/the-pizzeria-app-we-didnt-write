@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Tuna Pizza",
+        "desc": "Yummy pizza with a whole lot of cheese",
+        "prices": [
+            1,
+            2,
+            3
+        ],
+        "img": "https://res.cloudinary.com/yabsra/image/upload/v1654013952/cld-sample-4.jpg"
+    }
+]

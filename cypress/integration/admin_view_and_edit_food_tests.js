@@ -1,5 +1,6 @@
-import { deleteTestPizzas } from "../support/utils"
+import { createTestPizza, deleteTestPizzas } from "../support/utils"
 import 'cypress-file-upload';
+import { cy } from "date-fns/locale";
 
 
 describe(
@@ -10,9 +11,9 @@ describe(
             cy.clearCookies()
             deleteTestPizzas()
             cy.visit('localhost:3000/admin/login')
-            cy.get('[data-cy=username]').type('admin')
-            cy.get('[data-cy=password]').type('123456')
-            cy.get('[data-cy=sign-in-button]').click()
+            cy.get('[data-cy="username"]').type('admin')
+            cy.get('[data-cy="password"]').type('123456')
+            cy.get('[data-cy="sign-in-button"]').click()
         })
 
         it(`Given a logged in admin and products existing on the system,
@@ -28,17 +29,19 @@ describe(
         it(`Given a logged in admin and products existing on the system,
         When an admin vists /admin route and clicks on edit on a product,
         Then they should be able to see the product details`, () => {
-
-            cy.get('.edit-button').first().click()
+            createTestPizza();
+            cy.get('.edit-button').last().click()
             cy.contains('Edit Product').should('exist')
+            cy.contains('Cypress-Test-Pizza').should('exist')
         })
 
         it(`Given a logged in admin and products existing on the system,
         When an admin vists /admin route and clicks on edit on a product,
         Then they should be able to see the product details`, () => {
-
-            cy.get('.edit-button').first().click()
+            createTestPizza();
+            cy.get('.edit-button').last().click()
             cy.contains('Edit Product').should('exist')
+            cy.contains('Cypress-Test-Pizza').should('exist')
         })
 
         it(`Given a logged in admin and products existing on the system,
@@ -47,7 +50,8 @@ describe(
 
             cy.intercept('PUT', '/api/products/*').as('editPizza')
 
-            cy.get('.edit-button').first().click()
+            createTestPizza();
+            cy.get('.edit-button').last().click()
             cy.contains('Edit Product').should('exist')
             cy.get('[data-cy="small-pizza-price-field"]').clear().type(123.45)
             cy.get('[data-cy="submit-product-detail-button"]').click()
@@ -56,7 +60,7 @@ describe(
         })
 
         it(`Given a logged in admin,
-        When an admin creates a product and tries to delete it,
+        When an admin creates a product and deletes it,
         Then the product should not be shown on the products list`, { defaultCommandTimeout: 15000 }, () => {
 
             cy.get('[data-cy="add-product-button"]').click()

@@ -13,6 +13,7 @@ describe(
             cy.clearCookies();
             cy.visit('localhost:3000');
         })
+        
         it(
             `Given an order by a user,
                 When the admin logs in,

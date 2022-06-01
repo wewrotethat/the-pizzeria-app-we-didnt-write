@@ -11,6 +11,7 @@ describe(
             cy.clearCookies();
             cy.visit('localhost:3000');
         })
+
         it(
             `Given a user on the home page,
             When the user clicks on an item in the menu,
@@ -72,7 +73,7 @@ describe(
         it(
             `Given a user on the detail page,
                 When a user adds an item to their cart,
-                Then the cart have the added item`,
+                Then the cart should have the added item`,
             () => {
                 cy.get('[data-cy="image-Cypress-Test-Pizza"]').click()
                 cy.get('[data-cy="add-to-cart-button"]').click()
@@ -82,7 +83,6 @@ describe(
                 cy.get('[data-cy="cart-image-Cypress-Test-Pizza"]').should('have.attr', 'src', 'https://res.cloudinary.com/yabsra/image/upload/v1654013952/cld-sample-4.jpg').should('exist')
 
             })
-
 
         it(
             `Given a user on the detail page,

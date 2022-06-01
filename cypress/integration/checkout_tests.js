@@ -35,6 +35,7 @@ describe(
                 cy.get('[data-cy="cart-counter"]').click()
                 cy.get('[data-cy="checkout-button"]').click()
                 cy.contains('CASH ON DELIVERY').should('exist')
+                //
                 cy.contains('CASH ON DELIVERY').click()
                 cy.get('[data-cy="order-detail-name"]').type('llalal lalala')
                 cy.get('[data-cy="order-detail-phone"]').type('+251 987654311')
